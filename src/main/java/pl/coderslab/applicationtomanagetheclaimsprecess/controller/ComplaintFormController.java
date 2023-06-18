@@ -47,6 +47,13 @@ public class ComplaintFormController {
         return "redirect:/complaint/list";
     }
 
+    @GetMapping(path = "/complaint/list")
+    public String showComplaints(Model model) {
+        List<Complaint> complaints = complaintService.getAllComplaints();
+        model.addAttribute("complaints", complaints);
+        return "complaint/list";
+    }
+
     @ModelAttribute("status")
     public List<String> status() {
         return Arrays.asList("w toku", "rozpatrzona pozytywnie - wymiana",

@@ -1,5 +1,6 @@
 package pl.coderslab.applicationtomanagetheclaimsprecess.controller;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Complaint;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Customer;
@@ -79,6 +80,7 @@ public class ComplaintController {
     void deleteById(@PathVariable Long id) {
         complaintService.deleteComplaintById(id);
     }
+
 
 
 }

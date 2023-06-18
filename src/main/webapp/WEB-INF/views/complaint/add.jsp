@@ -37,7 +37,7 @@
         <form:errors path="product.salesDocumentType" cssClass="error"/></div>
 
     <label>Informacje o wadzie:</label>
-    <div> Data powstania wady: <form:input path="dateOfDefect" type="date"/><form:errors path="dateOfDefect" cssClass="error"/></div>
+    <div> Data powstania wady: <form:input path="dateOfDefect"/><form:errors path="dateOfDefect" cssClass="error"/></div>
     <div>
         <label for="typeOfDamage">Rodzaj uszkodzeń:</label>
         <form:checkboxes path="typeOfDamage" id="typeOfDamage" items="${typeOfDamage}" />
@@ -53,16 +53,12 @@
 
     <div> Dodatkowe uwagi: <form:textarea path="comments" rows="5" cols="50"/><form:errors path="comments" cssClass="error"/></div>
 
-    <div> Data złożenia reklamacji: <form:input path="dateOfComplaint" type="date"/><form:errors path="dateOfComplaint" cssClass="error"/></div>
+    <div> Data złożenia reklamacji: <form:input path="dateOfComplaint"/><form:errors path="dateOfComplaint" cssClass="error"/></div>
     <div>
         <label for="status">Status:</label>
         <form:select path="status" items="${status}" required="true">
         </form:select>
     </div>
-
-
-
-
 
     <input type="submit" value="Zapisz reklamację">
 </form:form>

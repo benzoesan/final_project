@@ -2,6 +2,7 @@ package pl.coderslab.applicationtomanagetheclaimsprecess.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 import java.time.LocalDateTime;
@@ -20,8 +21,9 @@ public class Complaint {
 
         @ManyToOne
         private Product product;
-
+        @DateTimeFormat(pattern = "dd-MM-yyyy")
         private LocalDateTime dateOfComplaint;
+        @DateTimeFormat(pattern = "dd-MM-yyyy")
         private LocalDateTime dateOfDefect;
         private int daysToDetermination;
         public List<String> defectDescription;

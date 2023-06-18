@@ -8,6 +8,7 @@ import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Customer;
 import pl.coderslab.applicationtomanagetheclaimsprecess.repository.ComplaintRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Service
@@ -15,6 +16,10 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class ComplaintService {
     private final ComplaintRepository complaintRepository;
+
+    public List<Complaint> getAllComplaints() {
+        return complaintRepository.findAll();
+    }
 
     public Complaint createComplaint (Complaint complaint) {
         complaint.setDateOfComplaint(LocalDateTime.now());
