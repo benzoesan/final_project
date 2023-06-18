@@ -24,9 +24,9 @@ public class Complaint {
         private LocalDateTime dateOfComplaint;
         private LocalDateTime dateOfDefect;
         private int daysToDetermination;
-        private String defectDescription;
+        public List<String> defectDescription;
         private String typeOfDamage;
         private String comments;
-        private String advertiserExpectations;
+        private List<String> advertiserExpectations;
         public List<String> status;
 }

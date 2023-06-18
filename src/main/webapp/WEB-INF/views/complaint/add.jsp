@@ -18,11 +18,11 @@
     <div> Imię: <form:input path="customer.firstName"/><form:errors path="customer.firstName" cssClass="error"/></div>
     <div> Nazwisko: <form:input path="customer.lastName"/><form:errors path="customer.lastName" cssClass="error"/></div>
     <div> E-mail: <form:input type="email" path="customer.email"/><form:errors path="customer.email" cssClass="error"/></div>
-    <div> Numer telefonu: <form:input path="customer.phone"/><form:errors path="customer.phone" cssClass="error"/></div>
+    <div> Numer telefonu: <form:input type ="tel" path="customer.phone"/><form:errors path="customer.phone" cssClass="error"/></div>
 
     <label>Informacje o produkcie:</label>
     <div> Nazwa produktu: <form:input path="product.name"/><form:errors path="product.name" cssClass="error"/></div>
-    <div> Opis produktu: <form:textarea path="product.description" rows="4" cols="6"/><form:errors path="product.description" cssClass="error"/></div>
+    <div> Opis produktu: <form:textarea path="product.description" rows="4" cols="20"/><form:errors path="product.description" cssClass="error"/></div>
     <div> Indeks: <form:input path="product.produceCode"/><form:errors path="product.produceCode" cssClass="error"/></div>
     <div> Cena: <form:input path="product.price" type="number" step="0.01"/><form:errors path="product.price" cssClass="error"/></div>
     <div> Data zakupu : <form:input path="product.purchaseDate" type="date"/><form:errors path="product.purchaseDate" cssClass="error"/></div>
@@ -37,12 +37,30 @@
         <form:errors path="product.salesDocumentType" cssClass="error"/></div>
 
     <label>Informacje o wadzie:</label>
+    <div> Data powstania wady: <form:input path="dateOfDefect" type="date"/><form:errors path="dateOfDefect" cssClass="error"/></div>
+    <div>
+        <label for="typeOfDamage">Rodzaj uszkodzeń:</label>
+        <form:checkboxes path="typeOfDamage" id="typeOfDamage" items="${typeOfDamage}" />
+    </div>
 
+    <div> Opis szczegółowy wady: <form:textarea path="defectDescription" rows="4" cols="50"/><form:errors path="defectDescription" cssClass="error"/></div>
+
+    <div>
+        <label for="advertiserExpectations">Oczekiwania klienta:</label>
+        <form:checkboxes path="advertiserExpectations" id="advertiserExpectations" items="${advertiserExpectations}" />
+    </div>
+
+
+    <div> Dodatkowe uwagi: <form:textarea path="comments" rows="5" cols="50"/><form:errors path="comments" cssClass="error"/></div>
+
+    <div> Data złożenia reklamacji: <form:input path="dateOfComplaint" type="date"/><form:errors path="dateOfComplaint" cssClass="error"/></div>
     <div>
         <label for="status">Status:</label>
         <form:select path="status" items="${status}" required="true">
         </form:select>
     </div>
+
+
 
 
 

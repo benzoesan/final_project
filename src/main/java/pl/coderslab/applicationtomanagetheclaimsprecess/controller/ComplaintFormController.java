@@ -53,8 +53,17 @@ public class ComplaintFormController {
                                 "rozpatrzona pozytywnie - zwrot", "odrzucona");
     }
 
+    @ModelAttribute("typeOfDamage")
+    public List<String> typeOfDamage() {
+        return Arrays.asList("pękanie", "prucie","uszkodzenia mechaniczne",
+                "przecieranie", "jakość nadruku", "jakość materiału", "wadliwe akcesoria",
+                "dziury", "przecieranie", "odbarwienia");
+    }
 
-
+    @ModelAttribute("advertiserExpectations")
+    public List<String> advertiserExpectations() {
+        return Arrays.asList("Zwrot środków", "Wymiana","Naprawa");
+    }
 
 
 
