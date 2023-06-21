@@ -17,7 +17,7 @@ public class Product {
     private String produceCode;
     private String description;
     private double price;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
     private LocalDate purchaseDate;
     private long salesDocumentNumber;
     private String salesDocumentType;

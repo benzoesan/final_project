@@ -2,14 +2,18 @@ package pl.coderslab.applicationtomanagetheclaimsprecess.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
-
-
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
+
 @Entity
-@Data
+@Setter
+@Getter
+@ToString
 @Table(name = "complaints")
 public class Complaint {
         @Id
@@ -21,14 +25,14 @@ public class Complaint {
 
         @ManyToOne
         private Product product;
-        @DateTimeFormat(pattern = "dd-MM-yyyy")
-        private LocalDateTime dateOfComplaint;
-        @DateTimeFormat(pattern = "dd-MM-yyyy")
-        private LocalDateTime dateOfDefect;
-        private int daysToDetermination;
-        public List<String> defectDescription;
-        private String typeOfDamage;
+        @DateTimeFormat(pattern = "dd.MM.yyyy")
+        private LocalDate dateOfComplaint;
+        @DateTimeFormat(pattern = "dd.MM.yyyy")
+        private LocalDate dateOfDefect;
+        private LocalDate daysToDetermination;
+        public String defectDescription;
+        public String typeOfDamage;
         private String comments;
-        private List<String> advertiserExpectations;
-        public List<String> status;
+        private String advertiserExpectations;
+        public String status;
 }

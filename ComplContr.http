@@ -7,5 +7,6 @@ GET http://localhost:8080/complaint/list
 
 ###
 
-GET http://localhost:8080/complaint/
+POST http://localhost:8080/complaint/edit?id=1
+
 ###

@@ -1,7 +1,12 @@
 package pl.coderslab.applicationtomanagetheclaimsprecess.controller;
 
+import jakarta.validation.Valid;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Complaint;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Customer;
+import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Product;
 import pl.coderslab.applicationtomanagetheclaimsprecess.service.CustomerService;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -49,4 +54,20 @@ public class CustomerController {
         customerService.deleteCustomerById(id);
     }
 
+
+    @GetMapping(path = "/customer/add")
+    String showAddCustomerForm(Model model){
+        model.addAttribute("customer", new Customer());
+        return "customer/add";
+    }
+    @PostMapping(path = "/customer/add")
+    String processAddCustomerForm(@Valid Customer customer, BindingResult bindingResult){
+
+        if (bindingResult.hasErrors()){
+            return "customer/add";
+        }
+
+        customerService.createCustomer(customer);
+        return "redirect:/customer/list";
+    }
 }

@@ -1,12 +1,11 @@
 package pl.coderslab.applicationtomanagetheclaimsprecess.controller;
 
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Complaint;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Customer;
 import pl.coderslab.applicationtomanagetheclaimsprecess.service.ComplaintService;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,21 +19,21 @@ public class ComplaintController {
     }
 
     @PostMapping(path = "/complaint")
-    void save (@RequestParam LocalDateTime dateOfComplaint,
-               @RequestParam LocalDateTime dateOfDefect,
-               @RequestParam int daysToDetermination,
-               @RequestParam List<String> defectDescription,
-               @RequestParam String typeOfDamage,
+    void save (@RequestParam LocalDate dateOfComplaint,
+               @RequestParam LocalDate dateOfDefect,
+               @RequestParam LocalDate daysToDetermination,
+               @RequestParam String defectDescription,
+               @RequestParam List<String> typeOfDamage,
                @RequestParam String comments,
-               @RequestParam List<String> advertiserExpectations,
-               @RequestParam List<String> status){
+               @RequestParam String advertiserExpectations,
+               @RequestParam String status){
 
         final Complaint complaint = new Complaint();
         complaint.setDateOfComplaint(dateOfComplaint);
         complaint.setDateOfDefect(dateOfDefect);
         complaint.setDaysToDetermination(daysToDetermination);
         complaint.setDefectDescription(defectDescription);
-        complaint.setTypeOfDamage(typeOfDamage);
+        complaint.setTypeOfDamage(typeOfDamage.toString());
         complaint.setComments(comments);
         complaint.setAdvertiserExpectations(advertiserExpectations);
         complaint.setStatus(status);
@@ -43,6 +42,11 @@ public class ComplaintController {
         customer.setFirstName(customer.getLastName());
 
         complaintService.createComplaint(complaint);
+    }
+    @GetMapping(path = "/complaints", produces = "text/plain;charset=utf-8")
+    String showComplains() {
+        final List<Complaint> complaints = complaintService.getAllComplaints();
+        return complaints.toString();
     }
 
     @GetMapping(path = "/complaint/{id}", produces = "text/plain;charset=utf-8")
@@ -54,13 +58,13 @@ public class ComplaintController {
     @PutMapping(path = "/complaint/{id}")
     void update(@PathVariable Long id,
                // @RequestParam LocalDateTime dateOfComplaint,
-                @RequestParam LocalDateTime dateOfDefect,
-                @RequestParam int daysToDetermination,
-                @RequestParam List<String> defectDescription,
+                @RequestParam LocalDate dateOfDefect,
+                @RequestParam LocalDate daysToDetermination,
+                @RequestParam String defectDescription,
                 @RequestParam String typeOfDamage,
                 @RequestParam String comments,
-                @RequestParam List<String> advertiserExpectations,
-                @RequestParam List<String> status){
+                @RequestParam String advertiserExpectations,
+                @RequestParam String status){
 
         final Complaint complaint = complaintService.getComplaintById(id);
         if (Objects.nonNull(complaint)) {
