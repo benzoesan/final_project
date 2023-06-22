@@ -1,13 +1,11 @@
 package pl.coderslab.applicationtomanagetheclaimsprecess.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
-import java.util.List;
 
 
 @Entity
@@ -29,7 +27,7 @@ public class Complaint {
         private LocalDate dateOfComplaint;
         @DateTimeFormat(pattern = "dd.MM.yyyy")
         private LocalDate dateOfDefect;
-        private LocalDate daysToDetermination;
+        private LocalDate dateOfDetermination;
         public String defectDescription;
         public String typeOfDamage;
         private String comments;

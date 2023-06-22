@@ -75,7 +75,7 @@
     </form:select>
     </div>
 
-    <input type="submit" value="Edytuj reklamację">
+    <input type="submit" value="Zapisz zmiany">
 </form:form>
 
 </body>

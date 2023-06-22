@@ -1,5 +1,7 @@
 package pl.coderslab.applicationtomanagetheclaimsprecess.controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Complaint;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Customer;
@@ -9,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-@RestController
+@Controller
 public class ComplaintController {
     private final ComplaintService complaintService;
 
@@ -21,7 +23,7 @@ public class ComplaintController {
     @PostMapping(path = "/complaint")
     void save (@RequestParam LocalDate dateOfComplaint,
                @RequestParam LocalDate dateOfDefect,
-               @RequestParam LocalDate daysToDetermination,
+               @RequestParam LocalDate dateOfDtermination,
                @RequestParam String defectDescription,
                @RequestParam List<String> typeOfDamage,
                @RequestParam String comments,
@@ -31,7 +33,7 @@ public class ComplaintController {
         final Complaint complaint = new Complaint();
         complaint.setDateOfComplaint(dateOfComplaint);
         complaint.setDateOfDefect(dateOfDefect);
-        complaint.setDaysToDetermination(daysToDetermination);
+        complaint.setDateOfDetermination(dateOfDtermination);
         complaint.setDefectDescription(defectDescription);
         complaint.setTypeOfDamage(typeOfDamage.toString());
         complaint.setComments(comments);
@@ -43,10 +45,11 @@ public class ComplaintController {
 
         complaintService.createComplaint(complaint);
     }
-    @GetMapping(path = "/complaints", produces = "text/plain;charset=utf-8")
-    String showComplains() {
+    @GetMapping(path = "/complaint/home", produces = "text/plain;charset=utf-8")
+    String showComplains(Model model) {
         final List<Complaint> complaints = complaintService.getAllComplaints();
-        return complaints.toString();
+        model.addAttribute("complaints", complaints);
+        return "complaint/home";
     }
 
     @GetMapping(path = "/complaint/{id}", produces = "text/plain;charset=utf-8")
@@ -59,7 +62,7 @@ public class ComplaintController {
     void update(@PathVariable Long id,
                // @RequestParam LocalDateTime dateOfComplaint,
                 @RequestParam LocalDate dateOfDefect,
-                @RequestParam LocalDate daysToDetermination,
+                @RequestParam LocalDate dateOfDtermination,
                 @RequestParam String defectDescription,
                 @RequestParam String typeOfDamage,
                 @RequestParam String comments,
@@ -70,7 +73,7 @@ public class ComplaintController {
         if (Objects.nonNull(complaint)) {
            // complaint.setDateOfComplaint(dateOfComplaint);
             complaint.setDateOfDefect(dateOfDefect);
-            complaint.setDaysToDetermination(daysToDetermination);
+            complaint.setDateOfDetermination(dateOfDtermination);
             complaint.setDefectDescription(defectDescription);
             complaint.setTypeOfDamage(typeOfDamage);
             complaint.setComments(comments);

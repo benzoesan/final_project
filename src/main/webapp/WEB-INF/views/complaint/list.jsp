@@ -14,7 +14,7 @@
         <th>Data złożenia reklamacji</th>
         <th>Nazwa produktu</th>
         <th>Indeks</th>
-        <th>Dni do przeterminowania</th>
+        <th>Data przeterminowania</th>
         <th>Status reklamacji</th>
     </tr>
     <c:forEach items="${complaints}" var="complaint">
@@ -24,7 +24,7 @@
             <td>${complaint.dateOfComplaint}</td>
             <td>${complaint.product.name}</td>
             <td>${complaint.product.produceCode}</td>
-            <td>${complaint.daysToDetermination}</td>
+            <td>${complaint.dateOfDetermination}</td>
             <td>${complaint.status}</td>
         </tr>
 

@@ -38,15 +38,13 @@ public class ComplaintService {
         complaintRepository.deleteById(id);
     }
 
-
-    // Klasa obsługująca logikę związaną z reklamacjami
-
     private static final int MAX_DAYS_TO_DETERMINATION = 14;
 
-    public void calculateAndSetDeadline(Complaint complaint) {
+    public LocalDate calculateAndSetDeadline(Complaint complaint) {
         LocalDate dateOfComplaint = complaint.getDateOfComplaint();
         LocalDate deadline = dateOfComplaint.plusDays(MAX_DAYS_TO_DETERMINATION);
-        complaint.setDaysToDetermination(deadline);
+        complaint.setDateOfDetermination(deadline);
+        return deadline;
     }
 }
 
