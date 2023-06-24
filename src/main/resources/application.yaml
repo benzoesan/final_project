@@ -19,5 +19,6 @@ spring:
       suffix: .jsp
   security:
     user:
-      name: admin
-      password: admin
+      name: test
+      password: test
+

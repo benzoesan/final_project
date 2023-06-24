@@ -2,7 +2,6 @@ package pl.coderslab.applicationtomanagetheclaimsprecess.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.apache.catalina.LifecycleState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String login;
+    private String username;
     private String password;
     private String email;
     @ManyToMany(fetch =FetchType.EAGER, cascade = CascadeType.ALL)

@@ -7,9 +7,7 @@ import pl.coderslab.applicationtomanagetheclaimsprecess.entity.User;
 import pl.coderslab.applicationtomanagetheclaimsprecess.repository.RoleRepository;
 import pl.coderslab.applicationtomanagetheclaimsprecess.repository.UserRepository;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @NoArgsConstructor
 public class UserServiceImpl implements UserService{
@@ -20,7 +18,7 @@ public class UserServiceImpl implements UserService{
     @Override
     public void saveUser(RegistrationDto registrationDto) {
     User user = new User();
-    user.setLogin(registrationDto.getLogin());
+    user.setUsername(registrationDto.getUsername());
     user.setEmail(registrationDto.getEmail());
     user.setPassword(registrationDto.getPassword());
     Role role = roleRepository.findByName("USER");

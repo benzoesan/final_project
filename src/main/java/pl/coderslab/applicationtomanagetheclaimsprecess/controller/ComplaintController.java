@@ -51,7 +51,12 @@ public class ComplaintController {
         model.addAttribute("complaints", complaints);
         return "complaint/home";
     }
-    
+//
+    //loogowanie
+    @GetMapping(path = "/login", produces = "text/plain;charset=utf-8")
+    public String loginPage(){
+        return "login";
+    }
 
     @GetMapping(path = "/complaint/{id}", produces = "text/plain;charset=utf-8")
     String findById(@PathVariable Long id){
@@ -88,7 +93,4 @@ public class ComplaintController {
     void deleteById(@PathVariable Long id) {
         complaintService.deleteComplaintById(id);
     }
-
-
-
 }
