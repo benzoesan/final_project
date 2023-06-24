@@ -98,8 +98,8 @@ public class ComplaintFormController {
 //    }
 
 
-    @ModelAttribute("status")
-    public List<String> status() {
+    @ModelAttribute("state")
+    public List<String> state() {
         return Arrays.asList("w toku", "rozpatrzona pozytywnie - wymiana",
                                 "rozpatrzona pozytywnie - zwrot", "odrzucona");
     }

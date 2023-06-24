@@ -57,13 +57,10 @@
     <div> Opis szczegółowy wady: <form:textarea path="defectDescription" rows="4" cols="50"/><form:errors path="defectDescription" cssClass="error"/></div>
 
     <div>
-<label>Oczekiwania klienta:</label><br>
-        <input type="checkbox" id="option1" name="advertiserExpectations" value="Zwrot środków">
-        <label for="option1">Zwrot środków</label><br>
-        <input type="checkbox" id="option2" name="advertiserExpectations" value="Wymiana">
-        <label for="option2">Wymiana</label><br>
-        <input type="checkbox" id="option3" name="advertiserExpectations" value="Naprawa">
-        <label for="option3">Naprawa</label><br>
+    <label>Oczekiwania klienta:</label><br>
+        Zwrot środków: <form:checkbox path="advertiserExpectations" value="Zwrot środków"/>
+        Wymiana: <form:checkbox path="advertiserExpectations" value="Wymiana"/>
+        Naprawa: <form:checkbox path="advertiserExpectations" value="Naprawa"/>
     </div>
 
     <div> Dodatkowe uwagi: <form:textarea path="comments" rows="5" cols="50"/><form:errors path="comments" cssClass="error"/></div>
@@ -71,8 +68,8 @@
     <div> Data złożenia reklamacji: <form:input path="dateOfComplaint" type="date"/><form:errors path="dateOfComplaint" cssClass="error"/></div>
 
     <div>
-        <label for="status">Status:</label>
-        <form:select path="status" items="${status}" required="true">
+        <label for="state">Status reklamacji:</label>
+        <form:select path="state" items="${state}" required="true">
         </form:select>
     </div>
 

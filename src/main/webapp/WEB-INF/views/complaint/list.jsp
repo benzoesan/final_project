@@ -15,6 +15,7 @@
         <th>Nazwa produktu</th>
         <th>Indeks</th>
         <th>Data przeterminowania</th>
+        <th>Oczekiwania klienta</th>
         <th>Status reklamacji</th>
     </tr>
     <c:forEach items="${complaints}" var="complaint">
@@ -25,7 +26,8 @@
             <td>${complaint.product.name}</td>
             <td>${complaint.product.produceCode}</td>
             <td>${complaint.dateOfDetermination}</td>
-            <td>${complaint.status}</td>
+            <td>${complaint.advertiserExpectations}</td>
+            <td>${complaint.state}</td>
         </tr>
 
         <td><a href="edit?id=${complaint.id}">Edit</a></td>

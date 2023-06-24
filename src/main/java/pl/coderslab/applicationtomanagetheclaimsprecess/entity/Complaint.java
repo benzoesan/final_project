@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Entity
@@ -29,8 +30,8 @@ public class Complaint {
         private LocalDate dateOfDefect;
         private LocalDate dateOfDetermination;
         public String defectDescription;
-        public String typeOfDamage;
+        public List<String> typeOfDamage;
         private String comments;
-        private String advertiserExpectations;
-        public String status;
+        private List<String> advertiserExpectations;
+        public List<String> state;
 }

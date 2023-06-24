@@ -27,18 +27,18 @@ public class ComplaintController {
                @RequestParam String defectDescription,
                @RequestParam List<String> typeOfDamage,
                @RequestParam String comments,
-               @RequestParam String advertiserExpectations,
-               @RequestParam String status){
+               @RequestParam List<String> advertiserExpectations,
+               @RequestParam List<String> status){
 
         final Complaint complaint = new Complaint();
         complaint.setDateOfComplaint(dateOfComplaint);
         complaint.setDateOfDefect(dateOfDefect);
         complaint.setDateOfDetermination(dateOfDtermination);
         complaint.setDefectDescription(defectDescription);
-        complaint.setTypeOfDamage(typeOfDamage.toString());
+        complaint.setTypeOfDamage(typeOfDamage);
         complaint.setComments(comments);
         complaint.setAdvertiserExpectations(advertiserExpectations);
-        complaint.setStatus(status);
+        complaint.setState(status);
 
         Customer customer = new Customer();
         customer.setFirstName(customer.getLastName());
@@ -51,6 +51,7 @@ public class ComplaintController {
         model.addAttribute("complaints", complaints);
         return "complaint/home";
     }
+    
 
     @GetMapping(path = "/complaint/{id}", produces = "text/plain;charset=utf-8")
     String findById(@PathVariable Long id){
@@ -64,10 +65,10 @@ public class ComplaintController {
                 @RequestParam LocalDate dateOfDefect,
                 @RequestParam LocalDate dateOfDtermination,
                 @RequestParam String defectDescription,
-                @RequestParam String typeOfDamage,
+                @RequestParam List<String> typeOfDamage,
                 @RequestParam String comments,
-                @RequestParam String advertiserExpectations,
-                @RequestParam String status){
+                @RequestParam List<String> advertiserExpectations,
+                @RequestParam List<String> status){
 
         final Complaint complaint = complaintService.getComplaintById(id);
         if (Objects.nonNull(complaint)) {
@@ -78,7 +79,7 @@ public class ComplaintController {
             complaint.setTypeOfDamage(typeOfDamage);
             complaint.setComments(comments);
             complaint.setAdvertiserExpectations(advertiserExpectations);
-            complaint.setStatus(status);
+            complaint.setState(status);
 
             complaintService.updateComplaint(complaint);
         }
