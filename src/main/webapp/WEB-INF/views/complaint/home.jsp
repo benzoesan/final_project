@@ -22,10 +22,17 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li>
+          <c:url value="/logout" var="logoutUrl" />
+          <form id="logout" action="${logoutUrl}" method="post" >
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+          </form>
+          <c:if test="${pageContext.request.userPrincipal.name != null}">
+            <a href="javascript:document.getElementById('logout').submit()">Wyloguj</a>
+          </c:if>
+          </li>
           <li class="nav-item"><a class="nav-link" href="add?id=${complaint.id}">Dodaj</a></li>
           <li class="nav-item"><a class="nav-link" href="list?id=${complaint.id}">Lista</a></li>
-          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">

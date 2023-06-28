@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -34,4 +35,7 @@ public class Complaint {
         private String comments;
         private List<String> advertiserExpectations;
         public List<String> state;
+        public void aktualizujStatusReklamacji(String newState) {
+                this.state = Collections.singletonList(newState);
+        }
 }

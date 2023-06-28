@@ -10,3 +10,5 @@ insert into complaints(dateOfComplaint, dateOfDefect, dateOfDetermination, custo
 
 INSERT INTO roles (`id`, `name`) VALUES (NULL, 'USER');
 INSERT INTO roles (`id`, `name`) VALUES (NULL, 'ADMIN');
+
+INSERT into user_role(user_id, role_id) VALUES (1,1);

@@ -1,10 +1,13 @@
 package pl.coderslab.applicationtomanagetheclaimsprecess.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Complaint;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Customer;
+import pl.coderslab.applicationtomanagetheclaimsprecess.repository.ComplaintRepository;
 import pl.coderslab.applicationtomanagetheclaimsprecess.service.ComplaintService;
 
 import java.time.LocalDate;
@@ -16,8 +19,10 @@ public class ComplaintController {
     private final ComplaintService complaintService;
 
 
+    @Autowired
     public ComplaintController(ComplaintService complaintService) {
         this.complaintService = complaintService;
+
     }
 
     @PostMapping(path = "/complaint")
@@ -52,11 +57,11 @@ public class ComplaintController {
         return "complaint/home";
     }
 //
-    //loogowanie
-    @GetMapping(path = "/login", produces = "text/plain;charset=utf-8")
-    public String loginPage(){
-        return "login";
-    }
+//    //loogowanie
+//    @GetMapping(path = "/login", produces = "text/plain;charset=utf-8")
+//    public String loginPage(){
+//        return "login";
+//    }
 
     @GetMapping(path = "/complaint/{id}", produces = "text/plain;charset=utf-8")
     String findById(@PathVariable Long id){
@@ -93,4 +98,28 @@ public class ComplaintController {
     void deleteById(@PathVariable Long id) {
         complaintService.deleteComplaintById(id);
     }
+
+    @PostMapping("/complaint/{complaintId}/state")
+    public ResponseEntity<String> aktualizujStatusReklamacji(@PathVariable Long complaintId, @RequestBody String newState) {
+        complaintService.aktualizujStatusReklamacji(complaintId, newState);
+        return ResponseEntity.ok("Status reklamacji został zaktualizowany.");
+    }
+
+//    @PostMapping("/complaint/{complaintId}/state")
+//    public ResponseEntity<String> aktualizujStatusReklamacji(@PathVariable("complaintId") Long complaintId) {
+//        Complaint complaint = complaintService.getComplaintById(complaintId);
+//        String newState = complaint.getState().toString();
+//
+//        complaintService.aktualizujStatusReklamacji(complaintId, newState);
+//
+//
+//        wyslijEmailKlientowi(complaint, newState);
+//
+//        return ResponseEntity.ok("Status reklamacji został zaktualizowany. Wiadomość e-mail została wysłana.");
+//    }
+//
+//    private void wyslijEmailKlientowi(Complaint complaint, String newState) {
+//    }
+
 }
+

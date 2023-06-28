@@ -7,4 +7,9 @@ public class LoginController {
     public String loginPage() {
         return "login";
     }
+
+    @GetMapping(path = "/logout",produces = "text/plain;charset=utf-8")
+    public String logout() {
+        return "redirect:/login";
+    }
 }

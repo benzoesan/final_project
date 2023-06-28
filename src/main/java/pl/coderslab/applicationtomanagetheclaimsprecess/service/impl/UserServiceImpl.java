@@ -1,4 +1,4 @@
-package pl.coderslab.applicationtomanagetheclaimsprecess.service;
+package pl.coderslab.applicationtomanagetheclaimsprecess.service.impl;
 
 import lombok.NoArgsConstructor;
 import pl.coderslab.applicationtomanagetheclaimsprecess.dto.RegistrationDto;
@@ -6,11 +6,12 @@ import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Role;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.User;
 import pl.coderslab.applicationtomanagetheclaimsprecess.repository.RoleRepository;
 import pl.coderslab.applicationtomanagetheclaimsprecess.repository.UserRepository;
+import pl.coderslab.applicationtomanagetheclaimsprecess.service.UserService;
 
 import java.util.Arrays;
 
 @NoArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
     private RoleRepository roleRepository;

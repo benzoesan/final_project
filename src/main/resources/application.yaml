@@ -5,7 +5,7 @@ spring:
     password: coderslab
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
@@ -21,4 +21,14 @@ spring:
     user:
       name: test
       password: test
-
+  mail:
+    host: smtp.gmail.com
+    username: dawidszewczyk12@gmail.com
+    password: xcdsycjmzmajmigu
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

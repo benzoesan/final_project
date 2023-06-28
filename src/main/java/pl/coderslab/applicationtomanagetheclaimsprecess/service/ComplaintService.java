@@ -1,6 +1,7 @@
 package pl.coderslab.applicationtomanagetheclaimsprecess.service;
 
-import lombok.RequiredArgsConstructor;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Complaint;
@@ -9,13 +10,21 @@ import pl.coderslab.applicationtomanagetheclaimsprecess.repository.ComplaintRepo
 import java.time.LocalDate;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 
 @Service
 @Transactional
-@RequiredArgsConstructor
+@Data
 public class ComplaintService {
     private final ComplaintRepository complaintRepository;
+    private final EmailSenderService emailSenderService;
+
+    @Autowired
+    public ComplaintService(ComplaintRepository complaintRepository, EmailSenderService emailSenderService) {
+        this.complaintRepository = complaintRepository;
+        this.emailSenderService = emailSenderService;
+    }
 
     public List<Complaint> getAllComplaints() {
         return complaintRepository.findAll();
@@ -45,6 +54,46 @@ public class ComplaintService {
         LocalDate deadline = dateOfComplaint.plusDays(MAX_DAYS_TO_DETERMINATION);
         complaint.setDateOfDetermination(deadline);
         return deadline;
+    }
+
+//    // Metoda do zmiany statusu reklamacji
+//    public void changeState(Complaint complaint, List<String> newState) {
+//        complaint.setState(newState);
+//
+//        // Tutaj wywołujemy metodę do wysyłania wiadomości e-mail z nowym statusem reklamacji
+//        String customerEmail = complaint.getCustomer().getEmail(); // Pobranie adresu e-mail klienta
+//        emailSenderService.sendEmailOnStatusChange(complaint, customerEmail); // Wywołanie metody wysyłającej wiadomość e-mail
+//    }
+
+
+    public void aktualizujStatusReklamacji(Long complaintId, String newState) {
+        Complaint complaint = complaintRepository.findById(complaintId)
+                .orElseThrow(() -> new NoSuchElementException("Reklamacja o podanym ID nie istnieje"));
+
+        complaintRepository.aktualizujStatusReklamacji(complaintId, newState);
+       // String updatedState = complaint.getState().toString();
+        if (!complaint.getState().equals(newState)) {
+            wyslijEmailKlientowi(complaint, newState);
+        }
+
+//        List<String> oldState = complaint.getState();
+//        complaint.setState(Collections.singletonList(newState));
+//        complaintRepository.save(complaint);
+//
+//        if (!newState.equals(oldState)) {
+//            wyslijEmailKlientowi(complaint);
+//        }
+    }
+
+    private void wyslijEmailKlientowi(Complaint complaint, String updatedState) {
+
+        String adresEmail = complaint.getCustomer().getEmail();
+        String [] cc= null;
+        String temat = "Status reklamacji został zmieniony";
+        String tresc = "Twój numer reklamacji: " + complaint.getId() +
+                "\nNowy status reklamacji: " + complaint.getState();
+
+        emailSenderService.sendEmail(null,adresEmail, null, temat, tresc);
     }
 }
 
