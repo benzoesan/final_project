@@ -5,9 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.applicationtomanagetheclaimsprecess.Model.ComplaintState;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Complaint;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Customer;
-import pl.coderslab.applicationtomanagetheclaimsprecess.repository.ComplaintRepository;
 import pl.coderslab.applicationtomanagetheclaimsprecess.service.ComplaintService;
 
 import java.time.LocalDate;
@@ -33,7 +33,7 @@ public class ComplaintController {
                @RequestParam List<String> typeOfDamage,
                @RequestParam String comments,
                @RequestParam List<String> advertiserExpectations,
-               @RequestParam List<String> status){
+               @RequestParam String state){
 
         final Complaint complaint = new Complaint();
         complaint.setDateOfComplaint(dateOfComplaint);
@@ -43,7 +43,7 @@ public class ComplaintController {
         complaint.setTypeOfDamage(typeOfDamage);
         complaint.setComments(comments);
         complaint.setAdvertiserExpectations(advertiserExpectations);
-        complaint.setState(status);
+        complaint.setState(state);
 
         Customer customer = new Customer();
         customer.setFirstName(customer.getLastName());
@@ -56,12 +56,6 @@ public class ComplaintController {
         model.addAttribute("complaints", complaints);
         return "complaint/home";
     }
-//
-//    //loogowanie
-//    @GetMapping(path = "/login", produces = "text/plain;charset=utf-8")
-//    public String loginPage(){
-//        return "login";
-//    }
 
     @GetMapping(path = "/complaint/{id}", produces = "text/plain;charset=utf-8")
     String findById(@PathVariable Long id){
@@ -78,7 +72,7 @@ public class ComplaintController {
                 @RequestParam List<String> typeOfDamage,
                 @RequestParam String comments,
                 @RequestParam List<String> advertiserExpectations,
-                @RequestParam List<String> status){
+                @RequestParam String state){
 
         final Complaint complaint = complaintService.getComplaintById(id);
         if (Objects.nonNull(complaint)) {
@@ -89,7 +83,7 @@ public class ComplaintController {
             complaint.setTypeOfDamage(typeOfDamage);
             complaint.setComments(comments);
             complaint.setAdvertiserExpectations(advertiserExpectations);
-            complaint.setState(status);
+            complaint.setState(state);
 
             complaintService.updateComplaint(complaint);
         }

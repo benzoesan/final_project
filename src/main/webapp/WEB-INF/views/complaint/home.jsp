@@ -1,63 +1,39 @@
-
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Spring Security Example</title>
+  <title>Complaints Application</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
 </head>
-<body>
-<h1>Witaj użytkowniku </h1>
-<div></div>
-<td><a href="add?id=${complaint.id}">Dodaj nową reklamację</a></td>
-<td><a href="list?id=${complaint.id}">wyswietl liste</a></td>
-</body>
 <body class="d-flex flex-column h-100">
 <main class="flex-shrink-0">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container px-5">
-      <a class="navbar-brand" href="index.html">Start Bootstrap</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
           <li>
-          <c:url value="/logout" var="logoutUrl" />
-          <form id="logout" action="${logoutUrl}" method="post" >
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-          </form>
-          <c:if test="${pageContext.request.userPrincipal.name != null}">
-            <a href="javascript:document.getElementById('logout').submit()">Wyloguj</a>
-          </c:if>
+            <form id="logout" action="/logout" method="post">
+              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+              <button type="submit" class="btn btn-link nav-link">Wyloguj</button>
+            </form>
           </li>
-          <li class="nav-item"><a class="nav-link" href="add?id=${complaint.id}">Dodaj</a></li>
-          <li class="nav-item"><a class="nav-link" href="list?id=${complaint.id}">Lista</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
-              <li><a class="dropdown-item" href="blog-home.html">Blog Home</a></li>
-              <li><a class="dropdown-item" href="blog-post.html">Blog Post</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
-              <li><a class="dropdown-item" href="portfolio-overview.html">Portfolio Overview</a></li>
-              <li><a class="dropdown-item" href="portfolio-item.html">Portfolio Item</a></li>
-            </ul>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="add?id=${complaint.id}">Nowa reklamacja</a></li>
+          <li class="nav-item"><a class="nav-link" href="list?id=${complaint.id}">Wszystkie reklamacje</a></li>
         </ul>
       </div>
     </div>
   </nav>
   <!-- Page Content-->
   <section class="py-5">
-    <div class="container px-5 my-5">
-      <div class="text-center mb-5">
-        <h1 class="fw-bolder">Our Work</h1>
-        <p class="lead fw-normal text-muted mb-0">Company portfolio</p>
-      </div>
+    <div class="text-center">
+      <img src="https://www.magazyngalerie.pl/wp-content/uploads/2019/03/Reserved-fot-1.jpg" style="width: 100%;">
     </div>
   </section>
 </main>
@@ -81,3 +57,4 @@
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
 </body>
+</html>

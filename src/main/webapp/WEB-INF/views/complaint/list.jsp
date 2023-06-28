@@ -3,38 +3,52 @@
 <html>
 <head>
     <title>Lista reklamacji</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-<h3>Lista reklamacji</h3>
+<div class="container">
+    <h3>Lista reklamacji</h3>
 
-<table>
-    <tr>
-        <th>Numer reklamacji</th>
-        <th>Imię i nazwisko</th>
-        <th>Data złożenia reklamacji</th>
-        <th>Nazwa produktu</th>
-        <th>Indeks</th>
-        <th>Data przeterminowania</th>
-        <th>Oczekiwania klienta</th>
-        <th>Status reklamacji</th>
-    </tr>
-    <c:forEach items="${complaints}" var="complaint">
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <td>${complaint.id}</td>
-            <td>${complaint.customer.firstName} ${complaint.customer.lastName}</td>
-            <td>${complaint.dateOfComplaint}</td>
-            <td>${complaint.product.name}</td>
-            <td>${complaint.product.produceCode}</td>
-            <td>${complaint.dateOfDetermination}</td>
-            <td>${complaint.advertiserExpectations}</td>
-            <td>${complaint.state}</td>
+            <th scope="col">Numer reklamacji</th>
+            <th scope="col">Imię i nazwisko</th>
+            <th scope="col">Data złożenia reklamacji</th>
+            <th scope="col">Nazwa produktu</th>
+            <th scope="col">Indeks</th>
+            <th scope="col">Data przeterminowania</th>
+            <th scope="col">Oczekiwania klienta</th>
+            <th scope="col">Status reklamacji</th>
+            <th scope="col">Akcje</th>
         </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${complaints}" var="complaint">
+            <tr>
+                <td>${complaint.id}</td>
+                <td>${complaint.customer.firstName} ${complaint.customer.lastName}</td>
+                <td>${complaint.dateOfComplaint}</td>
+                <td>${complaint.product.name}</td>
+                <td>${complaint.product.produceCode}</td>
+                <td>${complaint.dateOfDetermination}</td>
+                <td>${complaint.advertiserExpectations}</td>
+                <td>${complaint.state}</td>
+                <td>
+                    <a href="edit?id=${complaint.id}" class="btn btn-primary btn-sm">Edytuj</a>
+                    <a href="remove?id=${complaint.id}" class="btn btn-danger btn-sm" onclick="return confirm('Czy na pewno chcesz usunąć?')">Usuń</a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 
-        <td><a href="edit?id=${complaint.id}">Edit</a></td>
-        <td><a href="remove?id=${complaint.id}" onclick="return confirm('Are you sure?')">Usuń</a></td>
-    </c:forEach>
-</table>
+    <a href="<c:url value='/complaint/add'/>" class="btn btn-success">Dodaj nową reklamację</a>
+    <a href="<c:url value='/complaint/home'/>" class="btn btn-success">Powrót</a>
+</div>
 
-<a href="<c:url value='/complaint/add'/> ">Dodaj nową reklamację</a>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

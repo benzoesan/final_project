@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
+import pl.coderslab.applicationtomanagetheclaimsprecess.Model.ComplaintState;
+
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
@@ -34,8 +36,9 @@ public class Complaint {
         public List<String> typeOfDamage;
         private String comments;
         private List<String> advertiserExpectations;
-        public List<String> state;
+
+        public String state;
         public void aktualizujStatusReklamacji(String newState) {
-                this.state = Collections.singletonList(newState);
+                this.state = Collections.singletonList(newState).toString();
         }
 }

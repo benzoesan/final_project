@@ -85,13 +85,13 @@ public class ComplaintService {
 //        }
     }
 
-    private void wyslijEmailKlientowi(Complaint complaint, String updatedState) {
+    private void wyslijEmailKlientowi(Complaint complaint, String newState) {
 
         String adresEmail = complaint.getCustomer().getEmail();
         String [] cc= null;
         String temat = "Status reklamacji został zmieniony";
         String tresc = "Twój numer reklamacji: " + complaint.getId() +
-                "\nNowy status reklamacji: " + complaint.getState();
+                "\nNowy status reklamacji: " + newState;
 
         emailSenderService.sendEmail(null,adresEmail, null, temat, tresc);
     }

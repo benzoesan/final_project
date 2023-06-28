@@ -23,7 +23,7 @@ public class SecurityConfig {
                          .shouldFilterAllDispatcherTypes(false)
                          .requestMatchers(HttpMethod.POST, "/complaint/{complaintId}/state").permitAll()
                          .requestMatchers("/login", "/mail/send").permitAll()
-                         .requestMatchers("/css/**").permitAll()
+                         .requestMatchers("/css/**","/images/**" ).permitAll()
                          .requestMatchers("/js/**").permitAll()
                          .anyRequest().authenticated())
                  .formLogin(form -> {

@@ -21,7 +21,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
     @PostMapping(path = "/customer")
-    void save(@RequestParam String firstName, @RequestParam String lastName,@RequestParam String email, @RequestParam int phone){
+    void save(@RequestParam String firstName, @RequestParam String lastName,@RequestParam String email, @RequestParam String phone){
         Customer customer = new Customer();
         customer.setFirstName(firstName);
         customer.setLastName(lastName);
@@ -38,7 +38,7 @@ public class CustomerController {
     }
 
     @PutMapping(path = "/customer/{id}")
-    void update(@PathVariable Long id, @RequestParam String firstName, @RequestParam String lastName,@RequestParam String email, @RequestParam int phone){
+    void update(@PathVariable Long id, @RequestParam String firstName, @RequestParam String lastName,@RequestParam String email, @RequestParam String phone){
         final Customer customer = customerService.getCustomerById(id);
         if (Objects.nonNull(customer)) {
             customer.setFirstName(firstName);
