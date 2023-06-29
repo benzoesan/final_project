@@ -24,6 +24,10 @@ public class ComplaintController {
         this.complaintService = complaintService;
 
     }
+    private void calculateExpirationDate(Complaint complaint) {
+        LocalDate expirationDate = complaint.getDateOfComplaint().plusDays(14);
+        complaint.setDateOfDetermination(expirationDate);
+    }
 
     @PostMapping(path = "/complaint")
     void save (@RequestParam LocalDate dateOfComplaint,

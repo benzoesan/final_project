@@ -29,6 +29,10 @@ public class ComplaintFormController {
     @GetMapping(path = "/complaint/list")
     public String showComplaints(Model model) {
         List<Complaint> complaints = complaintService.getAllComplaints();
+
+        for (Complaint complaint : complaints) {
+            complaintService.calculateExpirationDate(complaint);
+        }
         model.addAttribute("complaints", complaints);
 
         return "complaint/list";
@@ -106,20 +110,6 @@ public class ComplaintFormController {
         model.addAttribute("complaints", complaints);
         return "complaint/list";
     }
-
-    @GetMapping("/complaints")
-    public LocalDate getComplaintDeadline(@PathVariable("id") Long complaintId) {
-        Complaint complaint = complaintService.getComplaintById(complaintId);
-        LocalDate deadline = complaintService.calculateAndSetDeadline(complaint);
-        return deadline;
-    }
-
-    // Endpoint do obliczania dni do przeterminowania reklamacji
-//    @GetMapping("/complaints/{id}/days-to-determination")
-//    public int calculateDaysToDetermination(@PathVariable("id") Long complaintId) {
-//        Complaint complaint = complaintService.getComplaintById(complaintId);
-//        return complaintService.calculateDaysToDetermination(complaint);
-//    }
 
 
     @ModelAttribute("state")

@@ -50,11 +50,10 @@ public class ComplaintService {
 
     private static final int MAX_DAYS_TO_DETERMINATION = 14;
 
-    public LocalDate calculateAndSetDeadline(Complaint complaint) {
-        LocalDate dateOfComplaint = complaint.getDateOfComplaint();
-        LocalDate deadline = dateOfComplaint.plusDays(MAX_DAYS_TO_DETERMINATION);
-        complaint.setDateOfDetermination(deadline);
-        return deadline;
+    //
+    public void calculateExpirationDate(Complaint complaint) {
+        LocalDate expirationDate = complaint.getDateOfComplaint().plusDays(14);
+        complaint.setDateOfDetermination(expirationDate);
     }
 
 //    // Metoda do zmiany statusu reklamacji
@@ -77,13 +76,6 @@ public class ComplaintService {
             wyslijEmailKlientowi(complaint, newState);
         }
 
-//        List<String> oldState = complaint.getState();
-//        complaint.setState(Collections.singletonList(newState));
-//        complaintRepository.save(complaint);
-//
-//        if (!newState.equals(oldState)) {
-//            wyslijEmailKlientowi(complaint);
-//        }
     }
 
     private void wyslijEmailKlientowi(Complaint complaint, String newState) {
