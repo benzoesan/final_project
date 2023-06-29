@@ -24,10 +24,6 @@ public class ComplaintController {
         this.complaintService = complaintService;
 
     }
-    private void calculateExpirationDate(Complaint complaint) {
-        LocalDate expirationDate = complaint.getDateOfComplaint().plusDays(14);
-        complaint.setDateOfDetermination(expirationDate);
-    }
 
     @PostMapping(path = "/complaint")
     void save (@RequestParam LocalDate dateOfComplaint,
@@ -97,11 +93,11 @@ public class ComplaintController {
         complaintService.deleteComplaintById(id);
     }
 
-    @PostMapping("/complaint/{complaintId}/state")
-    public ResponseEntity<String> aktualizujStatusReklamacji(@PathVariable Long complaintId, @RequestBody String newState) {
-        complaintService.aktualizujStatusReklamacji(complaintId, newState);
-        return ResponseEntity.ok("Status reklamacji został zaktualizowany.");
-    }
+//    @PostMapping("/complaint/{complaintId}/state")
+//    public ResponseEntity<String> aktualizujStatusReklamacji(@PathVariable Long complaintId, @RequestBody String newState) {
+//        complaintService.aktualizujStatusReklamacji(complaintId, newState);
+//        return ResponseEntity.ok("Status reklamacji został zaktualizowany.");
+//    }
 
 //    @PostMapping("/complaint/{complaintId}/state")
 //    public ResponseEntity<String> aktualizujStatusReklamacji(@PathVariable("complaintId") Long complaintId) {

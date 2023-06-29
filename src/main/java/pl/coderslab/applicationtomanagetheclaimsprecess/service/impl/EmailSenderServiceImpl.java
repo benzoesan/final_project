@@ -29,23 +29,15 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
 
     @Override
-    public String sendEmail(MultipartFile[] file, String to, String[] cc, String subject, String body) {
+    public String sendEmail(String to, String subject, String body) {
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
 
             mimeMessageHelper.setFrom(fromEmail);
             mimeMessageHelper.setTo(to);
-            mimeMessageHelper.setCc(cc);
             mimeMessageHelper.setSubject(subject);
             mimeMessageHelper.setText(body);
-
-            for(int i =0; i < file.length;i++){
-                mimeMessageHelper.addAttachment(
-                        file[i].getOriginalFilename(),
-                        new ByteArrayResource(file[i].getBytes())
-                );
-            }
 
             mailSender.send(mimeMessage);
             return "send mail";
@@ -55,16 +47,18 @@ public class EmailSenderServiceImpl implements EmailSenderService {
         }
     }
 
-    @Override
-    public void sendEmailOnStatusChange(Complaint complaint, String to) {
-
-    }
-
 //    @Override
 //    public void sendEmailOnStatusChange(Complaint complaint, String to) {
-//        String subject = "Zmiana statusu reklamacji";
-//        String body = "Status reklamacji o ID: " + complaint.getId() + " został zmieniony na: " + complaint.getState();
 //
-//        sendEmail(null, to, null, subject, body);
 //    }
+
+    @Override
+    public void sendEmailOnStatusChange(Complaint complaint, String to) {
+        String subject = "Zmiana statusu reklamacji";
+        String body = "Szanowny Kliencie,\n\nInformujemy o zmianie statusu reklamacji o numerze " +
+                complaint.getId() + ". Nowy status reklamacji to: " + complaint.getState() + ".\n\n" +
+                "Pozdrawiamy,\nZespół Obsługi Klienta";
+
+        sendEmail(to, subject, body);
+    }
 }

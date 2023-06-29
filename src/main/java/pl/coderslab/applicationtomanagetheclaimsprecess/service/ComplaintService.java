@@ -41,6 +41,18 @@ public class ComplaintService {
     }
 
     public void updateComplaint(Complaint complaint) {
+        // Pobierz poprzednią reklamację z bazy danych
+        Complaint previousComplaint = complaintRepository.findById(complaint.getId()).orElse(null);
+        if (previousComplaint != null) {
+            String previousStatus = previousComplaint.getState();
+            String currentStatus = complaint.getState();
+
+            if (!previousStatus.equals(currentStatus)) {
+                // Wywołaj metodę wysyłającą e-mail przy zmianie statusu reklamacji
+                String customerEmail = complaint.getCustomer().getEmail();
+                emailSenderService.sendEmailOnStatusChange(complaint, customerEmail);
+            }
+        }
         complaintRepository.save(complaint);
     }
 
@@ -50,7 +62,7 @@ public class ComplaintService {
 
     private static final int MAX_DAYS_TO_DETERMINATION = 14;
 
-    //
+    //data przeterminowania
     public void calculateExpirationDate(Complaint complaint) {
         LocalDate expirationDate = complaint.getDateOfComplaint().plusDays(14);
         complaint.setDateOfDetermination(expirationDate);
@@ -66,28 +78,28 @@ public class ComplaintService {
 //    }
 
 
-    public void aktualizujStatusReklamacji(Long complaintId, String newState) {
-        Complaint complaint = complaintRepository.findById(complaintId)
-                .orElseThrow(() -> new NoSuchElementException("Reklamacja o podanym ID nie istnieje"));
+//    public void aktualizujStatusReklamacji(Long complaintId, String newState) {
+//        Complaint complaint = complaintRepository.findById(complaintId)
+//                .orElseThrow(() -> new NoSuchElementException("Reklamacja o podanym ID nie istnieje"));
+//
+//        complaintRepository.aktualizujStatusReklamacji(complaintId, newState);
+//       // String updatedState = complaint.getState().toString();
+//        if (!complaint.getState().equals(newState)) {
+//            wyslijEmailKlientowi(complaint, newState);
+//        }
+//
+//    }
 
-        complaintRepository.aktualizujStatusReklamacji(complaintId, newState);
-       // String updatedState = complaint.getState().toString();
-        if (!complaint.getState().equals(newState)) {
-            wyslijEmailKlientowi(complaint, newState);
-        }
-
-    }
-
-    private void wyslijEmailKlientowi(Complaint complaint, String newState) {
-
-        String adresEmail = complaint.getCustomer().getEmail();
-        String [] cc= null;
-        String temat = "Status reklamacji został zmieniony";
-        String tresc = "Twój numer reklamacji: " + complaint.getId() +
-                "\nNowy status reklamacji: " + newState;
-
-        emailSenderService.sendEmail(null,adresEmail, null, temat, tresc);
-    }
+//    private void wyslijEmailKlientowi(Complaint complaint, String newState) {
+//
+//        String adresEmail = complaint.getCustomer().getEmail();
+//        //String [] cc=;
+//        String temat = "Status reklamacji został zmieniony";
+//        String tresc = "Twój numer reklamacji: " + complaint.getId() +
+//                "\nNowy status reklamacji: " + newState;
+//
+//        emailSenderService.sendEmail(null,adresEmail, temat, tresc);
+//    }
 
     public List<Complaint> findByLastName(String lastName) {
         return complaintRepository.findByCustomerLastName(lastName);
