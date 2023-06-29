@@ -43,8 +43,9 @@
         </tbody>
     </table>
 
-    <a href="<c:url value='/complaint/add'/>" class="btn btn-success">Dodaj nową reklamację</a>
-    <a href="<c:url value='/complaint/home'/>" class="btn btn-success">Powrót</a>
+    <a href="<c:url value='/complaint/add'/>" class="btn btn-primary">Dodaj nową reklamację</a>
+    <a href="<c:url value='/complaint/search'/>" class="btn btn-success">Wyszukaj</a>
+    <a href="<c:url value='/complaint/home'/>" class="btn btn-secondary">Powrót</a>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

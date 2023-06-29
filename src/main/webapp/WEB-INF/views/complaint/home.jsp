@@ -18,14 +18,15 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="add?id=${complaint.id}">Nowa reklamacja</a></li>
+          <li class="nav-item"><a class="nav-link" href="list?id=${complaint.id}">Wszystkie reklamacje</a></li>
           <li>
             <form id="logout" action="/logout" method="post">
               <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
               <button type="submit" class="btn btn-link nav-link">Wyloguj</button>
             </form>
           </li>
-          <li class="nav-item"><a class="nav-link" href="add?id=${complaint.id}">Nowa reklamacja</a></li>
-          <li class="nav-item"><a class="nav-link" href="list?id=${complaint.id}">Wszystkie reklamacje</a></li>
+
         </ul>
       </div>
     </div>

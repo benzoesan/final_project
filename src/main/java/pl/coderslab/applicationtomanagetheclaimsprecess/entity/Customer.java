@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Data
 @Setter
@@ -18,6 +20,9 @@ public class Customer {
     private String lastName;
     private String email;
     private String phone;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Complaint> complaints;
 
     public String getFullName() {
         return firstName + " " + lastName;

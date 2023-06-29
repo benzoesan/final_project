@@ -83,6 +83,30 @@ public class ComplaintFormController {
         return "redirect:/complaint/list";
     }
 
+    @GetMapping(path = "/complaint/search")
+    String showSearchComplaintForm() {
+        return "complaint/search";
+    }
+
+
+    //wyszukiwanie
+    @GetMapping(path = "/complaint/search/customer", params = "lastName")
+    String findByLastName(Customer customer, Model model) {
+
+        List<Complaint> complaints = complaintService.findByLastName(customer.getLastName());
+        model.addAttribute("complaints", complaints);
+
+        return "complaint/list";
+    }
+
+    //ok działa
+    @GetMapping(path = "/complaint/search", params = "state")
+    public String findByState(@RequestParam("state") String state, Model model) {
+        List<Complaint> complaints = complaintService.findByState(state);
+        model.addAttribute("complaints", complaints);
+        return "complaint/list";
+    }
+
     @GetMapping("/complaints")
     public LocalDate getComplaintDeadline(@PathVariable("id") Long complaintId) {
         Complaint complaint = complaintService.getComplaintById(complaintId);

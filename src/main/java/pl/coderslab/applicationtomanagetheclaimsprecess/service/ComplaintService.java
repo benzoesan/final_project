@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Complaint;
+import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Customer;
 import pl.coderslab.applicationtomanagetheclaimsprecess.repository.ComplaintRepository;
 
 import java.time.LocalDate;
@@ -95,6 +96,23 @@ public class ComplaintService {
 
         emailSenderService.sendEmail(null,adresEmail, null, temat, tresc);
     }
+
+    public List<Complaint> findByLastName(String lastName) {
+        return complaintRepository.findByCustomerLastName(lastName);
+    }
+//
+//    public List<Complaint> findByCustomerLastName(String lastName) {
+//        return complaintRepository.findByCustomerLastName(lastName);
+//    }
+
+    public List<Complaint> findByCustomer(Customer customer) {
+        return complaintRepository.findByCustomer(customer);
+    }
+
+    public List<Complaint> findByState(String state) {
+        return complaintRepository.findByState(state);
+    }
+
 }
 
 //        public int calculateDaysToDetermination(Complaint complaint) {

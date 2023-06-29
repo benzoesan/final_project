@@ -3,6 +3,7 @@ package pl.coderslab.applicationtomanagetheclaimsprecess.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Complaint;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Customer;
 import pl.coderslab.applicationtomanagetheclaimsprecess.repository.CustomerRepository;
 
@@ -36,4 +37,7 @@ public class CustomerService {
       return customerRepository.findAll();
    }
 
+   public List<Complaint> findByLastName(String lastName) {
+      return customerRepository.findByLastName(lastName);
+   }
 }
