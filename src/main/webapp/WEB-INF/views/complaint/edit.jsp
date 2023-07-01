@@ -75,7 +75,7 @@
             </div>
             <div>
                 <label for="purchaseDate">Data zakupu:</label>
-                <form:input path="product.purchaseDate" type="date" id="purchaseDate"/>
+                <form:input path="product.purchaseDate" type="date" id="purchaseDate" value="${previousPurchaseDate}"/>
                 <form:errors path="product.purchaseDate" cssClass="error"/>
             </div>
             <div>
@@ -100,7 +100,7 @@
             <br><br>
             <div>
                 <label for="defectDate">Data powstania wady:</label>
-                <form:input path="dateOfDefect" type="date" id="defectDate"/>
+                <form:input path="dateOfDefect" type="date" id="defectDate" value = "${previousDateOfDefect}"/>
                 <form:errors path="dateOfDefect" cssClass="error"/>
             </div>
             <div class="checkbox-group">
@@ -173,7 +173,7 @@
 
         <div class="form-group">
             <label for="complaintDate">Data złożenia reklamacji:</label>
-            <form:input path="dateOfComplaint" type="date" id="complaintDate"/>
+            <form:input path="dateOfComplaint" type="date" id="complaintDate" value="${previousDateOfComplaint}"/>
             <form:errors path="dateOfComplaint" cssClass="error"/>
         </div>
 

@@ -11,6 +11,7 @@ import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Customer;
 import pl.coderslab.applicationtomanagetheclaimsprecess.service.ComplaintService;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 

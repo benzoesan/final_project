@@ -15,6 +15,7 @@ import pl.coderslab.applicationtomanagetheclaimsprecess.service.ProductService;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -61,7 +62,14 @@ public class ComplaintFormController {
 
     @GetMapping(path = "/complaint/edit")
     String showEditComplaintForm(@RequestParam Long id, Model model) {
-        model.addAttribute("complaint", complaintService.getComplaintById(id));
+        Complaint complaint = complaintService.getComplaintById(id);
+        LocalDate previousPurchaseDate = complaint.getProduct().getPurchaseDate();
+        LocalDate previousDateOfComplaint = complaint.getDateOfComplaint();
+        LocalDate previousDateOfDefect =complaint.getDateOfDefect();
+        model.addAttribute("complaint", complaint);
+        model.addAttribute("previousPurchaseDate", previousPurchaseDate);
+        model.addAttribute("previousDateOfComplaint", previousDateOfComplaint);
+        model.addAttribute("previousDateOfDefect", previousDateOfDefect);
         return "complaint/edit";
     }
 

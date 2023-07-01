@@ -9,6 +9,7 @@ import pl.coderslab.applicationtomanagetheclaimsprecess.Model.ComplaintState;
 
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 
