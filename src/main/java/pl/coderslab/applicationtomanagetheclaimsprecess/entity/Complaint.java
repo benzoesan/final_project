@@ -1,6 +1,8 @@
 package pl.coderslab.applicationtomanagetheclaimsprecess.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,22 +24,22 @@ public class Complaint {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
-
         @ManyToOne
+        @Valid
         private Customer customer;
-
         @ManyToOne
+        @Valid
         private Product product;
-        @DateTimeFormat(pattern = "dd.MM.yyyy")
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate dateOfComplaint;
-        @DateTimeFormat(pattern = "dd.MM.yyyy")
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate dateOfDefect;
         private LocalDate dateOfDetermination;
         public String defectDescription;
         public String typeOfDamage;
+        @NotEmpty
         private String comments;
         private String advertiserExpectations;
-
         public String state;
         private String justification;
         public void aktualizujStatusReklamacji(String newState) {

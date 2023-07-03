@@ -1,6 +1,9 @@
 package pl.coderslab.applicationtomanagetheclaimsprecess.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,9 +19,13 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty
     private String firstName;
+    @NotEmpty
     private String lastName;
+    @Email
     private String email;
+    @NotEmpty
     private String phone;
 
     @OneToMany(mappedBy = "customer")

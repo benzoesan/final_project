@@ -46,7 +46,8 @@ public class ComplaintFormController {
     }
 
     @PostMapping(path = "/complaint/add")
-    String processAddComplaintForm(@Valid Complaint complaint, BindingResult bindingResult){
+    String processAddComplaintForm(@Valid Complaint complaint,
+                                   BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return "complaint/add";
         }
