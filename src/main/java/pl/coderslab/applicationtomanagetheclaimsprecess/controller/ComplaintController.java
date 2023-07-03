@@ -31,9 +31,9 @@ public class ComplaintController {
                @RequestParam LocalDate dateOfDefect,
                @RequestParam LocalDate dateOfDtermination,
                @RequestParam String defectDescription,
-               @RequestParam List<String> typeOfDamage,
+               @RequestParam String typeOfDamage,
                @RequestParam String comments,
-               @RequestParam List<String> advertiserExpectations,
+               @RequestParam String advertiserExpectations,
                @RequestParam String state){
 
         final Complaint complaint = new Complaint();
@@ -70,9 +70,9 @@ public class ComplaintController {
                 @RequestParam LocalDate dateOfDefect,
                 @RequestParam LocalDate dateOfDtermination,
                 @RequestParam String defectDescription,
-                @RequestParam List<String> typeOfDamage,
+                @RequestParam String typeOfDamage,
                 @RequestParam String comments,
-                @RequestParam List<String> advertiserExpectations,
+                @RequestParam String advertiserExpectations,
                 @RequestParam String state){
 
         final Complaint complaint = complaintService.getComplaintById(id);

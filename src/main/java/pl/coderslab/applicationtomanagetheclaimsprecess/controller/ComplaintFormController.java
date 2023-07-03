@@ -47,12 +47,11 @@ public class ComplaintFormController {
 
     @PostMapping(path = "/complaint/add")
     String processAddComplaintForm(@Valid Complaint complaint, BindingResult bindingResult){
-        Customer customer = complaint.getCustomer();
-        Product product = complaint.getProduct();
-
         if (bindingResult.hasErrors()){
             return "complaint/add";
         }
+        Customer customer = complaint.getCustomer();
+        Product product = complaint.getProduct();
 
         customerService.createCustomer(customer);
         productService.createProduct(product);
@@ -128,9 +127,9 @@ public class ComplaintFormController {
 
     @ModelAttribute("typeOfDamage")
     public List<String> typeOfDamage() {
-        return Arrays.asList("pękanie", "prucie","uszkodzenia mechaniczne",
-                "przecieranie", "jakość nadruku", "jakość materiału", "wadliwe akcesoria",
-                "dziury", "przecieranie", "odbarwienia");
+        return Arrays.asList("pękanie, prucie, przecieranie",
+                "jakość nadruku, jakość materiału, wadliwe akcesoria",
+                "dziury, odbarwienia");
     }
 
     @ModelAttribute("advertiserExpectations")

@@ -18,6 +18,7 @@
 
     <form:form method="post" modelAttribute="complaint">
         <div class="form-group">
+            <br><br>
             <label>DANE REKLAMUJĄCEGO:</label>
             <br><br>
             <div class="form-group" style="display: none;">
@@ -47,6 +48,7 @@
         </div>
 
         <div class="form-group">
+            <br><br>
             <label>INFORMACJE O PRODUKCIE:</label>
             <br><br>
             <div class="form-group" style="display: none;">
@@ -96,6 +98,7 @@
         </div>
 
         <div class="form-group">
+            <br><br>
             <label>PRZYCZYNY REKLAMACJI:</label>
             <br><br>
             <div>
@@ -103,70 +106,19 @@
                 <form:input path="dateOfDefect" type="date" id="defectDate"/>
                 <form:errors path="dateOfDefect" cssClass="error"/>
             </div>
-            <div class="checkbox-group">
-                <label>Rodzaj uszkodzenia:</label><br>
-                <div>
-                    <form:checkbox path="typeOfDamage" value="pękanie" id="damageCracking"/>
-                    <label for="damageCracking">Pękanie</label>
-                </div>
-                <div>
-                    <form:checkbox path="typeOfDamage" value="prucie" id="damageScratching"/>
-                    <label for="damageScratching">Prucie</label>
-                </div>
-                <div>
-                    <form:checkbox path="typeOfDamage" value="uszkodzenia mechaniczne" id="damageMechanical"/>
-                    <label for="damageMechanical">Uszkodzenia mechaniczne</label>
-                </div>
-                <div>
-                    <form:checkbox path="typeOfDamage" value="przecieranie" id="damageAbrasion"/>
-                    <label for="damageAbrasion">Przecieranie</label>
-                </div>
-                <div>
-                    <form:checkbox path="typeOfDamage" value="jakość nadruku" id="damagePrintQuality"/>
-                    <label for="damagePrintQuality">Jakość nadruku</label>
-                </div>
-                <div>
-                    <form:checkbox path="typeOfDamage" value="jakość materiału" id="damageMaterialQuality"/>
-                    <label for="damageMaterialQuality">Jakość materiału</label>
-                </div>
-                <div>
-                    <form:checkbox path="typeOfDamage" value="wadliwe akcesoria" id="damageFaultyAccessories"/>
-                    <label for="damageFaultyAccessories">Wadliwe akcesoria</label>
-                </div>
-                <div>
-                    <form:checkbox path="typeOfDamage" value="dziury" id="damageHoles"/>
-                    <label for="damageHoles">Dziury</label>
-                </div>
-                <div>
-                    <form:checkbox path="typeOfDamage" value="odbarwienia" id="damageDiscoloration"/>
-                    <label for="damageDiscoloration">Odbarwienia</label>
-                </div>
+
+            <div class="form-group">
+                <label for="complaintStatus">Rodzaj uszkodzeń:</label><br>
+                <form:select path="typeOfDamage" items="${typeOfDamage}" required="true" id="typeOfDamage"></form:select>
             </div>
-            <div>
-                <label for="defectDescription">Opis szczegółowy wady:</label>
-                <form:textarea path="defectDescription" rows="4" cols="50" id="defectDescription"/>
-                <form:errors path="defectDescription" cssClass="error"/>
-            </div>
+
+        <div class="form-group">
+            <label for="complaintStatus">Oczekiwania klienta:</label><br>
+            <form:select path="advertiserExpectations" items="${advertiserExpectations}" required="true" id="advertiserExpectations"></form:select>
         </div>
 
         <div class="form-group">
-            <label>Oczekiwania klienta:</label><br>
-            <div>
-                <form:checkbox path="advertiserExpectations" value="Zwrot środków" id="expectationRefund"/>
-                <label for="expectationRefund">Zwrot środków</label>
-            </div>
-            <div>
-                <form:checkbox path="advertiserExpectations" value="Wymiana" id="expectationExchange"/>
-                <label for="expectationExchange">Wymiana</label>
-            </div>
-            <div>
-                <form:checkbox path="advertiserExpectations" value="Naprawa" id="expectationRepair"/>
-                <label for="expectationRepair">Naprawa</label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="comments">Dodatkowe uwagi:</label>
+            <label for="comments">Dodatkowe uwagi/oczekiwania:</label>
             <form:textarea path="comments" rows="5" cols="50" id="comments"/>
             <form:errors path="comments" cssClass="error"/>
         </div>
@@ -184,6 +136,7 @@
 
         <div class="form-group">
             <input type="submit" value="Zapisz reklamację" class="btn btn-primary">
+        </div>
         </div>
     </form:form>
 </div>

@@ -34,11 +34,12 @@ public class Complaint {
         private LocalDate dateOfDefect;
         private LocalDate dateOfDetermination;
         public String defectDescription;
-        public List<String> typeOfDamage;
+        public String typeOfDamage;
         private String comments;
-        private List<String> advertiserExpectations;
+        private String advertiserExpectations;
 
         public String state;
+        private String justification;
         public void aktualizujStatusReklamacji(String newState) {
                 this.state = Collections.singletonList(newState).toString();
         }
