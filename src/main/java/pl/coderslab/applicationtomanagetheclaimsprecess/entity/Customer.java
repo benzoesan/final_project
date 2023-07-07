@@ -19,13 +19,13 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotEmpty
+    @NotEmpty(message = "Pole imię nie może być puste")
     private String firstName;
-    @NotEmpty
+    @NotEmpty(message = "Pole nazwisko nie może być puste")
     private String lastName;
-    @Email
+    @Email(message = "Pole email nie może być puste")
     private String email;
-    @NotEmpty
+    @NotEmpty(message = "Pole telefon nie może być puste")
     private String phone;
 
     @OneToMany(mappedBy = "customer")

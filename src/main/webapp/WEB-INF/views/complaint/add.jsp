@@ -10,6 +10,9 @@
             width: 100%;
             box-sizing: border-box;
         }
+        .error {
+            color: red;
+        }
     </style>
 </head>
 <body style="background-color: #f2f2f2;">
@@ -82,7 +85,7 @@
             </div>
             <div>
                 <label for="salesDocumentNumber">Numer dokumentu sprzedaży:</label>
-                <form:input path="product.salesDocumentNumber" type="number" id="salesDocumentNumber"/>
+                <form:input path="product.salesDocumentNumber" type="text" id="salesDocumentNumber"/>
                 <form:errors path="product.salesDocumentNumber" cssClass="error"/>
             </div>
             <div>

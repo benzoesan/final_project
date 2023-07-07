@@ -80,7 +80,7 @@
             </div>
             <div>
                 <label for="salesDocumentNumber">Numer dokumentu sprzedaży:</label>
-                <form:input path="product.salesDocumentNumber" type="number" id="salesDocumentNumber"/>
+                <form:input path="product.salesDocumentNumber" type="text" id="salesDocumentNumber"/>
                 <form:errors path="product.salesDocumentNumber" cssClass="error"/>
             </div>
             <div>

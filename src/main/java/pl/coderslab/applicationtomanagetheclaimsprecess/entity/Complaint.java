@@ -37,7 +37,7 @@ public class Complaint {
         private LocalDate dateOfDetermination;
         public String defectDescription;
         public String typeOfDamage;
-        @NotEmpty
+        @NotEmpty(message = "Komentarz nie może być pusty")
         private String comments;
         private String advertiserExpectations;
         public String state;
