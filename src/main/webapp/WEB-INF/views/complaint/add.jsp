@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Nowa reklamacja</title>
@@ -142,6 +143,7 @@
         </div>
         </div>
     </form:form>
+    <a href="<c:url value='/complaint/home'/>" class="btn btn-secondary">Powrót</a>
 </div>
 
 <!-- Bootstrap JS -->

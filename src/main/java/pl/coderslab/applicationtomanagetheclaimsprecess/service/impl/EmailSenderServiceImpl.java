@@ -46,11 +46,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
             throw new RuntimeException(e);
         }
     }
-
-//    @Override
-//    public void sendEmailOnStatusChange(Complaint complaint, String to) {
-//
-//    }
+    
 
     @Override
     public void sendEmailOnStatusChange(Complaint complaint, String to) {

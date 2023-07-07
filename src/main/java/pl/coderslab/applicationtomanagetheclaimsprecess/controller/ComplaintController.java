@@ -1,17 +1,14 @@
 package pl.coderslab.applicationtomanagetheclaimsprecess.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.applicationtomanagetheclaimsprecess.Model.ComplaintState;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Complaint;
 import pl.coderslab.applicationtomanagetheclaimsprecess.entity.Customer;
 import pl.coderslab.applicationtomanagetheclaimsprecess.service.ComplaintService;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -40,7 +37,7 @@ public class ComplaintController {
         complaint.setDateOfComplaint(dateOfComplaint);
         complaint.setDateOfDefect(dateOfDefect);
         complaint.setDateOfDetermination(dateOfDtermination);
-        complaint.setDefectDescription(defectDescription);
+        //complaint.setDefectDescription(defectDescription);
         complaint.setTypeOfDamage(typeOfDamage);
         complaint.setComments(comments);
         complaint.setAdvertiserExpectations(advertiserExpectations);
@@ -80,7 +77,7 @@ public class ComplaintController {
            // complaint.setDateOfComplaint(dateOfComplaint);
             complaint.setDateOfDefect(dateOfDefect);
             complaint.setDateOfDetermination(dateOfDtermination);
-            complaint.setDefectDescription(defectDescription);
+            //complaint.setDefectDescription(defectDescription);
             complaint.setTypeOfDamage(typeOfDamage);
             complaint.setComments(comments);
             complaint.setAdvertiserExpectations(advertiserExpectations);
@@ -94,27 +91,7 @@ public class ComplaintController {
         complaintService.deleteComplaintById(id);
     }
 
-//    @PostMapping("/complaint/{complaintId}/state")
-//    public ResponseEntity<String> aktualizujStatusReklamacji(@PathVariable Long complaintId, @RequestBody String newState) {
-//        complaintService.aktualizujStatusReklamacji(complaintId, newState);
-//        return ResponseEntity.ok("Status reklamacji został zaktualizowany.");
-//    }
 
-//    @PostMapping("/complaint/{complaintId}/state")
-//    public ResponseEntity<String> aktualizujStatusReklamacji(@PathVariable("complaintId") Long complaintId) {
-//        Complaint complaint = complaintService.getComplaintById(complaintId);
-//        String newState = complaint.getState().toString();
-//
-//        complaintService.aktualizujStatusReklamacji(complaintId, newState);
-//
-//
-//        wyslijEmailKlientowi(complaint, newState);
-//
-//        return ResponseEntity.ok("Status reklamacji został zaktualizowany. Wiadomość e-mail została wysłana.");
-//    }
-//
-//    private void wyslijEmailKlientowi(Complaint complaint, String newState) {
-//    }
 
 }
 

@@ -7,12 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
-import pl.coderslab.applicationtomanagetheclaimsprecess.Model.ComplaintState;
 
 import java.time.LocalDate;
 import java.util.Collections;
-import java.util.Date;
-import java.util.List;
 
 
 @Entity
@@ -35,7 +32,7 @@ public class Complaint {
         @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate dateOfDefect;
         private LocalDate dateOfDetermination;
-        public String defectDescription;
+        //public String defectDescription;
         public String typeOfDamage;
         @NotEmpty(message = "Komentarz nie może być pusty")
         private String comments;

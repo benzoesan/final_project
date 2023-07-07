@@ -41,14 +41,14 @@ public class ComplaintService {
     }
 
     public void updateComplaint(Complaint complaint) {
-        // Pobierz poprzednią reklamację z bazy danych
+        // Pobiera poprzednią reklamację z bazy danych
         Complaint previousComplaint = complaintRepository.findById(complaint.getId()).orElse(null);
         if (previousComplaint != null) {
             String previousStatus = previousComplaint.getState();
             String currentStatus = complaint.getState();
 
             if (!previousStatus.equals(currentStatus)) {
-                // Wywołaj metodę wysyłającą e-mail przy zmianie statusu reklamacji
+                // Wywołuje metodę wysyłającą e-mail przy zmianie statusu reklamacji
                 String customerEmail = complaint.getCustomer().getEmail();
                 emailSenderService.sendEmailOnStatusChange(complaint, customerEmail);
             }
@@ -60,57 +60,18 @@ public class ComplaintService {
         complaintRepository.deleteById(id);
     }
 
-    private static final int MAX_DAYS_TO_DETERMINATION = 14;
 
-    //data przeterminowania
+
+//    data przeterminowania
+    private static final int MAX_DAYS_TO_DETERMINATION = 14;
     public void calculateExpirationDate(Complaint complaint) {
-        LocalDate expirationDate = complaint.getDateOfComplaint().plusDays(14);
+        LocalDate expirationDate = complaint.getDateOfComplaint().plusDays(MAX_DAYS_TO_DETERMINATION);
         complaint.setDateOfDetermination(expirationDate);
     }
 
-//    // Metoda do zmiany statusu reklamacji
-//    public void changeState(Complaint complaint, List<String> newState) {
-//        complaint.setState(newState);
-//
-//        // Tutaj wywołujemy metodę do wysyłania wiadomości e-mail z nowym statusem reklamacji
-//        String customerEmail = complaint.getCustomer().getEmail(); // Pobranie adresu e-mail klienta
-//        emailSenderService.sendEmailOnStatusChange(complaint, customerEmail); // Wywołanie metody wysyłającej wiadomość e-mail
-//    }
-
-
-//    public void aktualizujStatusReklamacji(Long complaintId, String newState) {
-//        Complaint complaint = complaintRepository.findById(complaintId)
-//                .orElseThrow(() -> new NoSuchElementException("Reklamacja o podanym ID nie istnieje"));
-//
-//        complaintRepository.aktualizujStatusReklamacji(complaintId, newState);
-//       // String updatedState = complaint.getState().toString();
-//        if (!complaint.getState().equals(newState)) {
-//            wyslijEmailKlientowi(complaint, newState);
-//        }
-//
-//    }
-
-//    private void wyslijEmailKlientowi(Complaint complaint, String newState) {
-//
-//        String adresEmail = complaint.getCustomer().getEmail();
-//        //String [] cc=;
-//        String temat = "Status reklamacji został zmieniony";
-//        String tresc = "Twój numer reklamacji: " + complaint.getId() +
-//                "\nNowy status reklamacji: " + newState;
-//
-//        emailSenderService.sendEmail(null,adresEmail, temat, tresc);
-//    }
-
+// wyszukiwanie
     public List<Complaint> findByLastName(String lastName) {
         return complaintRepository.findByCustomerLastName(lastName);
-    }
-//
-//    public List<Complaint> findByCustomerLastName(String lastName) {
-//        return complaintRepository.findByCustomerLastName(lastName);
-//    }
-
-    public List<Complaint> findByCustomer(Customer customer) {
-        return complaintRepository.findByCustomer(customer);
     }
 
     public List<Complaint> findByState(String state) {
@@ -119,23 +80,5 @@ public class ComplaintService {
 
 }
 
-//        public int calculateDaysToDetermination(Complaint complaint) {
-//            LocalDate currentDate = LocalDate.now();
-//            LocalDate deadline = complaint.getDateOfComplaint().plusDays(MAX_DAYS_TO_DETERMINATION);
-//            long daysRemaining = ChronoUnit.DAYS.between(currentDate, deadline);
-//            return (int) Math.max(daysRemaining, 0);
-//        }
-//        public void updateComplaintWithDaysToDetermination(Complaint complaint) {
-//            int daysToDetermination = calculateDaysToDetermination(complaint);
-//            complaint.setDaysToDetermination(daysToDetermination);
-//            // Zapisz zmodyfikowany obiekt Complaint do bazy danych lub innego źródła danych
-//        }
-
-//        public boolean isDeadlineExpired(Complaint complaint) {
-//            LocalDate currentDate = LocalDate.now();
-//            LocalDate deadline = complaint.getDateOfComplaint().plusDays(MAX_DAYS_TO_DETERMINATION);
-//            return currentDate.isAfter(deadline);
-//        }
-//    }
 
 

@@ -95,13 +95,14 @@ public class ComplaintFormController {
         return "redirect:/complaint/list";
     }
 
+    //wyszukiwanie
     @GetMapping(path = "/complaint/search")
     String showSearchComplaintForm() {
         return "complaint/search";
     }
 
 
-    //wyszukiwanie
+
     @GetMapping(path = "/complaint/search/customer", params = "lastName")
     String findByLastName(Customer customer, Model model) {
 
